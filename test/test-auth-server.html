@@ -35,20 +35,20 @@
     }
 
     const getRefreshTokenElement = document.getElementById('getRefreshToken');
-    getTokenElement.onclick = function () {
-      const codeElement = document.getElementById('refresh_code');
-      const resultElement = document.getElementById('refresh_result');
+    getRefreshTokenElement.onclick = function () {
+      const codeElement1 = document.getElementById('refresh_code');
+      const resultElement1 = document.getElementById('refresh_result');
       const refreshcodeValue = codeElement.value;
 
       // Replace this by your function endpoint
-      const lambdaURL = 'https://j6d5d3y5jb.execute-api.us-east-2.amazonaws.com/dev/api/refresh_token/' + refreshcodeValue;
+      const lambdaURL2 = 'https://j6d5d3y5jb.execute-api.us-east-2.amazonaws.com/dev/api/refresh_token/' + refreshcodeValue;
 
-      fetch(lambdaURL)
+      fetch(lambdaURL2)
         .then(function (response) {
           return response.json();
         })
         .then(function (json) {
-          resultElement.innerText = JSON.stringify(json);
+          resultElement1.innerText = JSON.stringify(json);
         });
     } 
   </script>
