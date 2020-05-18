@@ -13,7 +13,6 @@ functions:
       - http:
           path: api/token/{code}
           method: get
-
   refreshAccessToken:
     handler: handler.refreshAccessToken
     events:
