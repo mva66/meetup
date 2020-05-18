@@ -40,7 +40,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Explore Events Near You</h1>
         <CitySearch updateEvents={this.updateEvents} />
         <NumberOfEvents
           updateEvents={this.updateEvents}
