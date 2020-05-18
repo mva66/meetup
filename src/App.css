@@ -56,10 +56,10 @@ input[type="text"], input[type="number"] {
 }
 
 .suggestions>li:hover {
-  background-color: #BCDCDB;
+  background-color: #bcdcdb;
 }
 
-.Event {
+.event {
   padding: 10px 10px 20px;
   margin-bottom: 10px;
   text-align: left;
