@@ -1,27 +1,53 @@
 import React, { Component } from "react";
-import NumberOfEvents from "./NumberOfEvents";
-import CitySearch from "./CitySearch";
-import EventList from "./EventList";
-import { getEvents } from "./api";
 import "./App.css";
 
+import EventList from "./EventList";
+import CitySearch from "./CitySearch";
+import NumberOfEvents from "./NumberOfEvents";
+import { getEvents } from "./api";
+
 class App extends Component {
+  componentDidMount() {
+    getEvents().then((response) => this.setState({ events: response }));
+  }
+
   state = {
     events: [],
+    page: null,
+    defaultCity: "",
     lat: null,
     lon: null,
   };
 
-  updateEvents = (lat, lon) => {
-    getEvents(lat, lon).then((events) => this.setState({ events }));
+  updateEvents = (lat, lon, page) => {
+    if (lat && lon) {
+      getEvents(lat, lon, this.state.page).then((response) =>
+        this.setState({ events: response, lat, lon })
+      );
+    } else if (page) {
+      getEvents(this.state.lat, this.state.lon, page).then((response) =>
+        this.setState({ events: response, page })
+      );
+    } else {
+      getEvents(
+        this.state.lat,
+        this.state.lon,
+        this.state.page
+      ).then((response) => this.setState({ events: response }));
+    }
   };
 
   render() {
     return (
       <div className="App">
-        <h1>Explore Events near you </h1>
+        <h1>Explore Events Near You</h1>
         <CitySearch updateEvents={this.updateEvents} />
-        <NumberOfEvents numOfEventsListed={this.state.numOfEventsListed} />
+        <NumberOfEvents
+          updateEvents={this.updateEvents}
+          numberOfEvents={this.state.events.length}
+          lat={this.state.lat}
+          lon={this.state.lon}
+        />
         <EventList events={this.state.events} />
       </div>
     );
