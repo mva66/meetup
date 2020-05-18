@@ -39,7 +39,7 @@ input[type="text"], input[type="number"] {
 .suggestions {
   width: 250px;
   align-self: center;
-  margin: 0;
+  margin: 20;
   font-size: 14px;
 }
 
