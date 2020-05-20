@@ -32,9 +32,15 @@ class Event extends Component {
         </div>
         {showDetails && (
           <div className="event__Details">
-            <p className="event__Details--description">
-              {this.props.event.description}
-            </p>
+            <div className="eventVenue">
+              Venue:{" "}
+              {this.props.event.venue && this.props.event.venue.address_1}
+            </div>
+            <div className="eventStatus">Status: {this.props.event.status}</div>
+            <div
+              className="eventDescription"
+              dangerouslySetInnerHTML={{ __html: this.props.event.description }}
+            ></div>
           </div>
         )}
       </div>
