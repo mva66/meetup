@@ -45,10 +45,13 @@ async function getEvents(lat, lon, page) {
   if (window.location.href.startsWith("http://localhost")) {
     return mockEvents.events;
   }
+
+  //check to see if online
   if (!navigator.onLine) {
     const events = localStorage.getItem("lastEvents");
     return JSON.parse(events);
   }
+
   const token = await getAccessToken();
 
   if (token) {
@@ -74,6 +77,7 @@ async function getEvents(lat, lon, page) {
     }
     return events;
   }
+  return [];
 }
 
 function getAccessToken() {
