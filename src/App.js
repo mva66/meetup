@@ -7,16 +7,30 @@ import NumberOfEvents from "./NumberOfEvents";
 import { getEvents } from "./api";
 
 class App extends Component {
-  componentDidMount() {
-    getEvents().then((response) => this.setState({ events: response }));
-  }
-
   state = {
     events: [],
     page: null,
     defaultCity: "",
     lat: null,
     lon: null,
+    infoText: "",
+    offlineText: "",
+  };
+  componentDidMount() {
+    getEvents().then((response) => this.setState({ events: response }));
+    window.addEventListener("online", this.offLineAlert());
+  }
+  offLineAlert = () => {
+    if (navigator.onLine === false) {
+      this.setState({
+        offlineText:
+          "You appear to be offline. Please reconnect for an updated list.",
+      });
+    } else {
+      this.setState({
+        offlineText: "",
+      });
+    }
   };
 
   updateEvents = (lat, lon, page) => {
