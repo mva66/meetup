@@ -15,6 +15,7 @@ class App extends Component {
     lat: null,
     lon: null,
     offlineText: "",
+    infoText: "",
   };
   componentDidMount() {
     getEvents().then((response) => this.setState({ events: response }));
