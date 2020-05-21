@@ -5,7 +5,7 @@ import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
 import { getEvents } from "./api";
-import { offlineAlert } from "./Alert";
+import { OfflineAlert } from "./Alert";
 
 class App extends Component {
   state = {
@@ -18,14 +18,14 @@ class App extends Component {
     infoText: "",
   };
   componentDidMount() {
-    getEvents().then((response) => this.setState({ events: response }));
-    window.addEventListener("online", this.offlineAlert());
+    this.updateEvents();
+    window.addEventListener("online", this.offLineAlert());
   }
-  offlineAlert = () => {
+  offLineAlert = () => {
     if (navigator.onLine === false) {
       this.setState({
         offlineText:
-          "You appear to be offline. Please reconnect for an updated list.",
+          "You appear to be offline, this list is now cached. Please reconnect for an updated list.",
       });
     } else {
       this.setState({
@@ -56,7 +56,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Explore Events Near You</h1>
-        <offlineAlert text={this.state.offlineText} />
+        <OfflineAlert text={this.state.offlineText} />
         <CitySearch updateEvents={this.updateEvents} />
         <NumberOfEvents
           updateEvents={this.updateEvents}
