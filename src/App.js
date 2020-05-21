@@ -25,7 +25,7 @@ class App extends Component {
     if (navigator.onLine === false) {
       this.setState({
         offlineText:
-          "You appear to be offline. Please reconnect for an updated list.",
+          "You appear to be offline. Please reconnect for an updated list of events.",
       });
     } else {
       this.setState({
