@@ -13,14 +13,13 @@ class App extends Component {
     defaultCity: "",
     lat: null,
     lon: null,
-    infoText: "",
     offlineText: "",
   };
   componentDidMount() {
     getEvents().then((response) => this.setState({ events: response }));
-    window.addEventListener("online", this.offLineAlert());
+    window.addEventListener("online", this.offlineAlert());
   }
-  offLineAlert = () => {
+  offlineAlert = () => {
     if (navigator.onLine === false) {
       this.setState({
         offlineText:
