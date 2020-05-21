@@ -25,7 +25,7 @@ class App extends Component {
     if (navigator.onLine === false) {
       this.setState({
         offlineText:
-          "You appear to be offline, this list is now cached. Please reconnect for an updated list.",
+          "You appear to be offline. Please reconnect for an updated list.",
       });
     } else {
       this.setState({
