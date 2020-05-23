@@ -14,8 +14,6 @@ class App extends Component {
     defaultCity: "",
     lat: null,
     lon: null,
-    offlineText: "",
-    infoText: "",
   };
   componentDidMount() {
     this.updateEvents();
